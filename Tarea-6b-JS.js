@@ -28,6 +28,7 @@ function resetear () {
     borrarIntegrantesPasados();
     ocultarBotonCalculo();
     ocultarIntegrantes();
+    ocultarTextoAnalisis();
 }
 
 //Funcion que resetea el ejercicio al principio
@@ -94,6 +95,7 @@ function crearCasillasIntegrantes(indice) {
     
     const $input = document.createElement('input');
     $input.type = 'number';
+    $input.id = 'salario';
 
     $div.appendChild($label);
     $div.appendChild($input);
@@ -111,6 +113,10 @@ function crearCasillasIntegrantes(indice) {
 document.querySelector('#calcular').onclick = function(event) {
 
     mostrarTextoAnalisis();
+    calcularSalarioMayor();
+    calcularSalarioMenor();
+    calcularSalarioAnualPromedio();
+    calcularSalarioMensualPromedio();
 
     event.preventDefault();
 }
@@ -120,6 +126,73 @@ document.querySelector('#calcular').onclick = function(event) {
 function mostrarTextoAnalisis() {
     document.querySelector('#analisis').className = "flexbox-item-3";
 }
+
+//Funcion que oculta el texto en el div#analisis
+
+function ocultarTextoAnalisis() {
+    document.querySelector('#analisis').className = "flexbox-item-3 hidden";
+}
+
+//Funcion que calcula el salario mayor de los integrantes familiares
+function calcularSalarioMayor() {  
+    const $salarios = document.querySelectorAll('#salario');
+    let salarios = [];
+
+    for ( let j = 0; j < $salarios.length; j++) {
+        salarios.push(Number($salarios[j].value));
+    } 
+    
+    let salarioMayor = Math.max(...salarios);
+    document.querySelector('#mayorSalario').textContent = `${salarioMayor}`;
+}
+
+//Funcion que calcula el salario menor de los integrantes familiares
+
+function calcularSalarioMenor() {  
+    const $salarios = document.querySelectorAll('#salario');
+    let salarios = [];
+
+    for ( let j = 0; j < $salarios.length; j++) {
+        salarios.push(Number($salarios[j].value));
+    } 
+    
+    let salarioMenor = Math.min(...salarios);
+    document.querySelector('#menorSalario').textContent = `${salarioMenor}`;
+}
+
+// Funcion que calcula el salario promedio
+
+function calcularSalarioAnualPromedio() {  
+    const $salarios = document.querySelectorAll('#salario');
+    let salarios = [];
+    let salarioTotal = 0;
+
+    for ( let j = 0; j < $salarios.length; j++) {
+        salarioTotal = salarioTotal + Number($salarios[j].value);
+    } 
+    
+    let salarioPromedio = salarioTotal / $salarios.length;
+    document.querySelector('#salarioAnualPromedio').textContent = `${salarioPromedio}`;
+}
+
+// Funcion que calcula el salario mensual promedio
+
+function calcularSalarioMensualPromedio() {  
+    const $salarios = document.querySelectorAll('#salario');
+    let salarios = [];
+    let salarioTotal = 0;
+    const MESES_ANIO = 12;
+
+    for ( let j = 0; j < $salarios.length; j++) {
+        salarioTotal = salarioTotal + Number($salarios[j].value);
+    } 
+    
+    let salarioPromedio = ((salarioTotal/MESES_ANIO) / $salarios.length).toFixed(2);
+    document.querySelector('#salarioMensualPromedio').textContent = `${salarioPromedio}`;
+}
+
+
+
 
 
 
