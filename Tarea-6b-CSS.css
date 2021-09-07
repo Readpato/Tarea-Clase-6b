@@ -3,13 +3,15 @@ html {
     color: white;
 }
 
+h1 {
+    text-align: center;
+}
+
 .flexbox-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: green;
-    
 }
 
 .flexbox-item-1 {
@@ -27,19 +29,31 @@ html {
 }
 
 .flexbox-item-3 {
-    display: none;
     width: 200px;
     border: 3px solid goldenrod;
     text-align: center;
     margin: 10px;
 }
 
-#integrantesTrabajadores {
+#cantidad-integrantes {
     text-align: center;
     margin-bottom: 5px;
-    
 }
 
-#botonCalculoIntegrantes {
+#botonSiguiente {
+    margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.hidden {
+    display: none;
+}
+
+.integrante {
+    margin: 10px;
+}
+
+#calcular {
+    margin: 5px;
+}
+
