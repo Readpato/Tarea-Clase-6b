@@ -115,7 +115,8 @@ document.querySelector('#calcular').onclick = function(event) {
     mostrarTextoAnalisis();
     calcularSalarioMayor();
     calcularSalarioMenor();
-    calcularSalarioPromedio();
+    calcularSalarioAnualPromedio();
+    calcularSalarioMensualPromedio();
 
     event.preventDefault();
 }
@@ -161,7 +162,7 @@ function calcularSalarioMenor() {
 
 // Funcion que calcula el salario promedio
 
-function calcularSalarioPromedio() {  
+function calcularSalarioAnualPromedio() {  
     const $salarios = document.querySelectorAll('#salario');
     let salarios = [];
     let salarioTotal = 0;
@@ -172,6 +173,22 @@ function calcularSalarioPromedio() {
     
     let salarioPromedio = salarioTotal / $salarios.length;
     document.querySelector('#salarioAnualPromedio').textContent = `${salarioPromedio}`;
+}
+
+// Funcion que calcula el salario mensual promedio
+
+function calcularSalarioMensualPromedio() {  
+    const $salarios = document.querySelectorAll('#salario');
+    let salarios = [];
+    let salarioTotal = 0;
+    const MESES_ANIO = 12;
+
+    for ( let j = 0; j < $salarios.length; j++) {
+        salarioTotal = salarioTotal + Number($salarios[j].value);
+    } 
+    
+    let salarioPromedio = ((salarioTotal/MESES_ANIO) / $salarios.length).toFixed(2);
+    document.querySelector('#salarioMensualPromedio').textContent = `${salarioPromedio}`;
 }
 
 
