@@ -114,6 +114,8 @@ document.querySelector('#calcular').onclick = function(event) {
 
     mostrarTextoAnalisis();
     calcularSalarioMayor();
+    calcularSalarioMenor();
+    calcularSalarioPromedio();
 
     event.preventDefault();
 }
@@ -130,7 +132,7 @@ function ocultarTextoAnalisis() {
     document.querySelector('#analisis').className = "flexbox-item-3 hidden";
 }
 
-//Function que calcula el salario mayor de los integrantes familiares
+//Funcion que calcula el salario mayor de los integrantes familiares
 function calcularSalarioMayor() {  
     const $salarios = document.querySelectorAll('#salario');
     let salarios = [];
@@ -141,6 +143,35 @@ function calcularSalarioMayor() {
     
     let salarioMayor = Math.max(...salarios);
     document.querySelector('#mayorSalario').textContent = `${salarioMayor}`;
+}
+
+//Funcion que calcula el salario menor de los integrantes familiares
+
+function calcularSalarioMenor() {  
+    const $salarios = document.querySelectorAll('#salario');
+    let salarios = [];
+
+    for ( let j = 0; j < $salarios.length; j++) {
+        salarios.push(Number($salarios[j].value));
+    } 
+    
+    let salarioMenor = Math.min(...salarios);
+    document.querySelector('#menorSalario').textContent = `${salarioMenor}`;
+}
+
+// Funcion que calcula el salario promedio
+
+function calcularSalarioPromedio() {  
+    const $salarios = document.querySelectorAll('#salario');
+    let salarios = [];
+    let salarioTotal = 0;
+
+    for ( let j = 0; j < $salarios.length; j++) {
+        salarioTotal = salarioTotal + Number($salarios[j].value);
+    } 
+    
+    let salarioPromedio = salarioTotal / $salarios.length;
+    document.querySelector('#salarioAnualPromedio').textContent = `${salarioPromedio}`;
 }
 
 
