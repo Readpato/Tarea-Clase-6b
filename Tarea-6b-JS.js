@@ -106,7 +106,20 @@ function crearCasillasIntegrantes(indice) {
     $integrantes.insertBefore($div, $botonCalcular);
 }
 
+//Evento que corre las funciones para analizar los sueldos despues de ser clickeado el boton calcular.
 
+document.querySelector('#calcular').onclick = function(event) {
+
+    mostrarTextoAnalisis();
+
+    event.preventDefault();
+}
+
+//Funcion que muestra el texto oculto en el div#analisis
+
+function mostrarTextoAnalisis() {
+    document.querySelector('#analisis').className = "flexbox-item-3";
+}
 
 
 
