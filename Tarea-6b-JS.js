@@ -28,6 +28,7 @@ function resetear () {
     borrarIntegrantesPasados();
     ocultarBotonCalculo();
     ocultarIntegrantes();
+    ocultarTextoAnalisis();
 }
 
 //Funcion que resetea el ejercicio al principio
@@ -94,6 +95,7 @@ function crearCasillasIntegrantes(indice) {
     
     const $input = document.createElement('input');
     $input.type = 'number';
+    $input.id = 'salario';
 
     $div.appendChild($label);
     $div.appendChild($input);
@@ -111,6 +113,7 @@ function crearCasillasIntegrantes(indice) {
 document.querySelector('#calcular').onclick = function(event) {
 
     mostrarTextoAnalisis();
+    calcularSalarioMayor();
 
     event.preventDefault();
 }
@@ -120,6 +123,28 @@ document.querySelector('#calcular').onclick = function(event) {
 function mostrarTextoAnalisis() {
     document.querySelector('#analisis').className = "flexbox-item-3";
 }
+
+//Funcion que oculta el texto en el div#analisis
+
+function ocultarTextoAnalisis() {
+    document.querySelector('#analisis').className = "flexbox-item-3 hidden";
+}
+
+//Function que calcula el salario mayor de los integrantes familiares
+function calcularSalarioMayor() {  
+    const $salarios = document.querySelectorAll('#salario');
+    let salarios = [];
+
+    for ( let j = 0; j < $salarios.length; j++) {
+        salarios.push(Number($salarios[j].value));
+    } 
+    
+    let salarioMayor = Math.max(...salarios);
+    document.querySelector('#mayorSalario').textContent = `${salarioMayor}`;
+}
+
+
+
 
 
 
